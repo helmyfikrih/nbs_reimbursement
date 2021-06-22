@@ -1,0 +1,28 @@
+
+<!-- ace scripts -->
+<script src="assets/js/ace-elements.min.js"></script>
+<script src="assets/js/ace.min.js"></script>
+<script>
+    $( ".tooltipDown" ).tooltip({
+    show: null,
+    position: {
+    my: "left top",
+    at: "left bottom"
+    },
+    open: function( event, ui ) {
+    ui.tooltip.animate({ top: ui.tooltip.position().top + 10 }, "fast" );
+    }
+    });
+    
+    const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+</script>

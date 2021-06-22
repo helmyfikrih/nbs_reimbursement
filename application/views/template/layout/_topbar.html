@@ -1,0 +1,183 @@
+<body class="no-skin">
+	<div id="navbar" class="navbar navbar-default ace-save-state">
+		<div class="navbar-container ace-save-state" id="navbar-container">
+			<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+				<span class="sr-only">Toggle sidebar</span>
+
+				<span class="icon-bar"></span>
+
+				<span class="icon-bar"></span>
+
+				<span class="icon-bar"></span>
+			</button>
+
+			<div class="navbar-header pull-left">
+				<a href="<?=base_url('home')?>" class="navbar-brand">
+					<small>
+						<!-- <i class="fa fa-leaf"></i> -->
+						<img id="logo_header" src='<?=base_url("assets/images/icon/$system[logo_header]?x=").time()?>'
+							style="width:22px;">
+						<?= $system["application_name"] ?>
+					</small>
+				</a>
+			</div>
+
+			<div class="navbar-buttons navbar-header pull-right" role="navigation">
+				<ul class="nav ace-nav">
+					<!-- <li class="grey dropdown-modal">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<i class="ace-icon fa fa-tasks"></i>
+							<span class="badge badge-grey">4</span>
+						</a>
+
+						<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+							<li class="dropdown-header">
+								<i class="ace-icon fa fa-check"></i>
+								4 Tasks to complete
+							</li>
+
+							<li class="dropdown-content">
+								<ul class="dropdown-menu dropdown-navbar">
+									<li>
+										<a href="#">
+											<div class="clearfix">
+												<span class="pull-left">Software Update</span>
+												<span class="pull-right">65%</span>
+											</div>
+
+											<div class="progress progress-mini">
+												<div style="width:65%" class="progress-bar"></div>
+											</div>
+										</a>
+									</li>
+
+									<li>
+										<a href="#">
+											<div class="clearfix">
+												<span class="pull-left">Hardware Upgrade</span>
+												<span class="pull-right">35%</span>
+											</div>
+
+											<div class="progress progress-mini">
+												<div style="width:35%" class="progress-bar progress-bar-danger"></div>
+											</div>
+										</a>
+									</li>
+
+									<li>
+										<a href="#">
+											<div class="clearfix">
+												<span class="pull-left">Unit Testing</span>
+												<span class="pull-right">15%</span>
+											</div>
+
+											<div class="progress progress-mini">
+												<div style="width:15%" class="progress-bar progress-bar-warning"></div>
+											</div>
+										</a>
+									</li>
+
+									<li>
+										<a href="#">
+											<div class="clearfix">
+												<span class="pull-left">Bug Fixes</span>
+												<span class="pull-right">90%</span>
+											</div>
+
+											<div class="progress progress-mini progress-striped active">
+												<div style="width:90%" class="progress-bar progress-bar-success"></div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</li>
+
+							<li class="dropdown-footer">
+								<a href="#">
+									See tasks with details
+									<i class="ace-icon fa fa-arrow-right"></i>
+								</a>
+							</li>
+						</ul>
+					</li>-->
+
+					<li class="blue dropdown-modal">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+							<img src="<?= base_url() ?>assets/uploads/languages_flag/<?=$this->session->userdata('logged_in')['language']?>.gif">
+							<span class="badge badge-important"></span>
+						</a>
+
+						<ul
+							class="dropdown-menu-right dropdown-navbar navbar-blue dropdown-menu dropdown-caret dropdown-close animated
+							fadeInDown" style="max-width: 100%;"
+							id="language">
+							<li>
+								<a href="<?= base_url('kms/set_language/indonesia') ?>">
+									<img src="<?= base_url() ?>assets/uploads/languages_flag/indonesia.gif">  
+									Indonesia
+								</a>
+							</li>
+							<li>
+								<a href="<?= base_url('kms/set_language/english') ?>">
+									<img src="<?= base_url() ?>assets/uploads/languages_flag/english.gif">
+									English
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="blue dropdown-modal">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#" onclick="setNotifReaded()">
+							<i class="ace-icon fa fa-bell icon-animated-bell"></i>
+							<span class="badge badge-important" id="totalNotif"></span>
+						</a>
+
+						<ul
+							class="dropdown-menu-right dropdown-navbar navbar-blue dropdown-menu dropdown-caret dropdown-close animated
+							fadeInDown"
+							id="appendNotif">
+							<!-- <li class="dropdown-footer">
+								<a href="#">
+									See all notifications
+									<i class="ace-icon fa fa-arrow-right"></i>
+								</a>
+							</li> -->
+						</ul>
+					</li>
+
+					<li class="light-blue dropdown-modal">
+						<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+							<img class="nav-user-photo avatar" src="<?=base_url()?>assets/images/avatars/<?= $usDetail['avatar_name'] ?>?x=<?=time()?>"
+								alt="Jason's Photo" />
+							<span class="user-info">
+								<small><?= $this->lang->line('text_welcome') ?>,</small>
+								<?= $usDetail['username'] ?>
+							</span>
+
+							<i class="ace-icon fa fa-caret-down"></i>
+						</a>
+
+						<ul
+							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close animated
+							fadeInDown">
+
+							<li>
+								<a href="<?=base_url('profile')?>">
+									<i class="ace-icon fa fa-user"></i>
+									<?= $this->lang->line('text_profile') ?>
+								</a>
+							</li>
+
+							<li class="divider"></li>
+
+							<li>
+								<a href="<?=base_url('auth/verify/logout')?>">
+									<i class="ace-icon fa fa-power-off"></i>
+									Logout
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div><!-- /.navbar-container -->
+	</div>
