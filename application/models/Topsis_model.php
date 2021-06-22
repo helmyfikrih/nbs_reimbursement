@@ -98,7 +98,7 @@ class Topsis_model extends CI_model
     function getAltUser()
     {
         $this->db->select('user_id, user_username');
-        $this->db->from('kms_user');
+        $this->db->from('m_user');
         $this->db->where('user_status', 1);
         return $this->db->get()->result_array();
     }

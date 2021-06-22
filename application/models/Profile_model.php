@@ -3,27 +3,28 @@
 class Profile_model extends CI_model
 {
 
-    function isExistUserDetail(){
+    function isExistUserDetail()
+    {
         $userId = $this->session->userdata('logged_in')['user_id'];
-        $query = "SELECT 1 FROM kms_user_detail WHERE user_id='$userId'";
-        if($this->db->query($query)->result()){
+        $query = "SELECT 1 FROM user_detail WHERE user_id='$userId'";
+        if ($this->db->query($query)->result()) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    function changeAvatar($userId,$params)
+    function changeAvatar($userId, $params)
     {
-        if($this->isExistUserDetail()){
+        if ($this->isExistUserDetail()) {
             $data = array(
                 'ud_img_name' => $params['file_name'],
-                'ud_img_dir' => base_url('assets/images/avatars/').$params['file_name'],
+                'ud_img_dir' => base_url('assets/images/avatars/') . $params['file_name'],
                 'ud_last_update' => date('Y-m-d H:i:s')
             );
 
             $this->db->where('user_id', $userId);
-            return $this->db->update('kms_user_detail', $data);
+            return $this->db->update('user_detail', $data);
         } else {
             $data = array(
                 'user_id' => $userId,
@@ -31,17 +32,18 @@ class Profile_model extends CI_model
                 'ud_img_dir' => base_url('assets/images/avatars/') . $params['file_name'],
                 'ud_last_update' => date('Y-m-d H:i:s')
             );
-        
-            return $this->db->insert('kms_user_detail', $data);
+
+            return $this->db->insert('user_detail', $data);
         }
     }
 
-    function updateProfile($params){
+    function updateProfile($params)
+    {
         $userId = $this->session->userdata('logged_in')['user_id'];
         if ($this->isExistUserDetail()) {
             $data = array(
                 'subject_id' => $params['subject'] ? $params['subject'] : null,
-                'ud_full_name' => $params['fullName'],
+                'user_f_name' => $params['fullName'],
                 'ud_gender' => $params['sex'],
                 'ud_nik' => $params['nik'],
                 'ud_address' => $params['address'],
@@ -51,12 +53,12 @@ class Profile_model extends CI_model
                 'ud_last_update' => date('Y-m-d H:i:s')
             );
             $this->db->where('user_id', $userId);
-            $this->db->update('kms_user_detail', $data);
+            $this->db->update('user_detail', $data);
         } else {
             $data = array(
                 'user_id' => $userId,
                 'subject_id' => $params['subject'] ? $params['subject'] : null,
-                'ud_full_name' => $params['fullName'],
+                'user_f_name' => $params['fullName'],
                 'ud_gender' => $params['sex'],
                 'ud_nik' => $params['nik'],
                 'ud_address' => $params['address'],
@@ -65,7 +67,7 @@ class Profile_model extends CI_model
                 'ud_phone' => preg_replace("/[^0-9]/", "", $params['phone']),
                 'ud_last_update' => date('Y-m-d H:i:s')
             );
-            $this->db->insert('kms_user_detail', $data);
+            $this->db->insert('user_detail', $data);
         }
         if ($this->db->affected_rows() >= 1) {
             return true;
@@ -74,7 +76,8 @@ class Profile_model extends CI_model
         }
     }
 
-    function changeUsername($params){
+    function changeUsername($params)
+    {
         $userId = $this->session->userdata('logged_in')['user_id'];
         $data = array(
             'user_username' => $params['username'],
@@ -82,10 +85,11 @@ class Profile_model extends CI_model
             'user_last_update_by' => $userId
         );
         $this->db->where('user_id', $userId);
-        return $this->db->update('kms_user', $data);
+        return $this->db->update('m_user', $data);
     }
 
-    function changeEmail($params){
+    function changeEmail($params)
+    {
         $userId = $this->session->userdata('logged_in')['user_id'];
         $data = array(
             'user_email' => $params['email'],
@@ -93,17 +97,18 @@ class Profile_model extends CI_model
             'user_last_update_by' => $userId
         );
         $this->db->where('user_id', $userId);
-        return $this->db->update('kms_user', $data);
+        return $this->db->update('m_user', $data);
     }
 
-    function removeAvatar(){
+    function removeAvatar()
+    {
         $userId = $this->session->userdata("logged_in")['user_id'];
         $data = array(
             'ud_img_name' => null,
             'ud_img_dir' => null,
         );
-        $this->db->where('user_id',$userId);
-        return $this->db->update('kms_user_detail', $data);
+        $this->db->where('user_id', $userId);
+        return $this->db->update('user_detail', $data);
     }
 
 
@@ -111,7 +116,7 @@ class Profile_model extends CI_model
     {
 
         $this->db->select('user_username');
-        $this->db->from('kms_user');
+        $this->db->from('m_user');
         //$this -> db -> where('username', $username);
         //$this -> db -> where('password', MD5($password));
 
@@ -130,7 +135,7 @@ class Profile_model extends CI_model
     {
 
         $this->db->select('user_username');
-        $this->db->from('kms_user');
+        $this->db->from('m_user');
         //$this -> db -> where('username', $username);
         //$this -> db -> where('password', MD5($password));
 
@@ -144,5 +149,4 @@ class Profile_model extends CI_model
             return false;
         }
     }
-    
 }

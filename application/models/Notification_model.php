@@ -4,7 +4,8 @@ class Notification_model extends CI_model
 {
 
 
-    function getNewRegister(){
+    function getNewRegister()
+    {
         $cond = array(
             'mandatory_approve' => 1,
             'approve_status IS NULl' => null
@@ -13,28 +14,30 @@ class Notification_model extends CI_model
         if ($this->session->userdata('logged_in')['role_id'] != 1) {
             $this->db->where('register_school_id', $this->session->userdata('logged_in')['school_id']);
         }
-        return $this->db->get('kms_user_register')->result_array();
+        return $this->db->get('m_user_register')->result_array();
     }
 
-    function getRequestedDocument(){
+    function getRequestedDocument()
+    {
         $cond = array(
             'kd.document_is_request' => 1,
             'kd.document_status' => 3
         );
         $this->db->select('kd.*, ku.user_username');
         $this->db->from('kms_document kd');
-        $this->db->join('kms_user ku', 'ku.user_id=kd.user_id','left');
+        $this->db->join('m_user ku', 'ku.user_id=kd.user_id', 'left');
         $this->db->where($cond);
         return $this->db->get()->result_array();
     }
 
-    function getDocNeedApprove(){
+    function getDocNeedApprove()
+    {
         $cond = array(
             'kd.document_status' => 2
         );
         $this->db->select('kd.*, ku.user_username');
         $this->db->from('kms_document kd');
-        $this->db->join('kms_user ku', 'ku.user_id=kd.user_id','left');
+        $this->db->join('m_user ku', 'ku.user_id=kd.user_id', 'left');
         $this->db->where($cond);
         if ($this->session->userdata('logged_in')['role_id'] != 1) {
             $this->db->where('kd.school_id', $this->session->userdata('logged_in')['school_id']);
@@ -49,7 +52,7 @@ class Notification_model extends CI_model
         );
         $this->db->select('kn.*, ku.user_username');
         $this->db->from('kms_notulensi kn');
-        $this->db->join('kms_user ku', 'ku.user_id=kn.user_id', 'left');
+        $this->db->join('m_user ku', 'ku.user_id=kn.user_id', 'left');
         $this->db->join('kms_schools ks', 'ks.school_id=kn.school_id', 'left');
         $this->db->where($cond);
         if ($this->session->userdata('logged_in')['role_id'] != 1) {
@@ -77,5 +80,4 @@ class Notification_model extends CI_model
         $this->db->update('kms_notification', $data);
         return $this->db->affected_rows();
     }
-    
 }

@@ -43,7 +43,7 @@
                                             <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
                                                 <!-- <i class="ace-icon fa fa-circle light-green"></i> -->
                                                 &nbsp;
-                                                <span class="white"><?= $userDetail[0]['ud_full_name'] ? $userDetail[0]['ud_full_name'] :  $userDetail[0]['user_username'] ?></span>
+                                                <span class="white"><?= $userDetail[0]['user_f_name'] ? $userDetail[0]['user_f_name'] :  $userDetail[0]['user_username'] ?></span>
                                             </a>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@
                                         <div class="profile-info-name"> N<?= $this->lang->line('profile_full_name') ?> </div>
 
                                         <div class="profile-info-value">
-                                            <span class="editable" id="username"><?= $userDetail[0]['ud_full_name'] ? $userDetail[0]['ud_full_name'] : 'Tidak Ada' ?></span>
+                                            <span class="editable" id="username"><?= $userDetail[0]['user_f_name'] ? $userDetail[0]['user_f_name'] : 'Tidak Ada' ?></span>
                                         </div>
                                     </div>
                                     <div class="profile-info-row">

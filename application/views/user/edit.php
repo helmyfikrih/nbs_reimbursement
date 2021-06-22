@@ -317,7 +317,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         autosize($('textarea[class*=autosize]'));
         // Set Form
         $('#user_username').val('<?= $userDetail[0]['user_username'] ? $userDetail[0]['user_username'] : 'Tidak Ada' ?>');
-        $('#user_full_name').val('<?= $userDetail[0]['ud_full_name'] ? $userDetail[0]['ud_full_name'] : 'Tidak Ada' ?>');
+        $('#user_full_name').val('<?= $userDetail[0]['user_f_name'] ? $userDetail[0]['user_f_name'] : 'Tidak Ada' ?>');
         $('#user_nik').val('<?= $userDetail[0]['ud_nik'] ? $userDetail[0]['ud_nik'] : 'Tidak Ada' ?>');
         $('#user_place_birth').val('<?= $userDetail[0]['ud_birth_place'] ? $userDetail[0]['ud_birth_place'] : 'Tidak Ada' ?>');
         $('#user_date_birth').val('<?= $userDetail[0]['ud_birth_date'] ? date('d/m/Y', strtotime($userDetail[0]['ud_birth_date'])) : 'Tidak Ada' ?>');

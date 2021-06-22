@@ -29,8 +29,8 @@ class Register_user_model extends CI_model
 
         $this->db->select('reg.*, ur.*, ks.*
         ');
-        $this->db->from('kms_user_register reg');
-        $this->db->join('kms_user_role ur', 'ur.role_id=reg.register_role', 'left');
+        $this->db->from('m_user_register reg');
+        $this->db->join('m_role ur', 'ur.role_id=reg.register_role', 'left');
         $this->db->join('kms_schools ks', 'ks.school_id=reg.register_school_id', 'left');
         if ($cond) {
             $this->db->where($cond);
@@ -78,8 +78,8 @@ class Register_user_model extends CI_model
         // $this->db->or_where(['bast.created_by_4w' => $username]);
         $this->db->select('reg.*, ur.*
         ');
-        $this->db->from('kms_user_register reg');
-        $this->db->join('kms_user_role ur', 'ur.role_id=reg.register_role', 'left');
+        $this->db->from('m_user_register reg');
+        $this->db->join('m_role ur', 'ur.role_id=reg.register_role', 'left');
         $this->db->join('kms_schools ks', 'ks.school_id=reg.register_school_id', 'left');
         if ($this->session->userdata('logged_in')['role_id'] != 1) {
             $this->db->where('ks.school_id', $this->session->userdata('logged_in')['school_id']);
@@ -100,22 +100,22 @@ class Register_user_model extends CI_model
     function getData($cond)
     {
         $this->db->where($cond);
-        return $this->db->get('kms_user_register')->result_array();
+        return $this->db->get('m_user_register')->result_array();
     }
 
-    function update($data,$cond){
+    function update($data, $cond)
+    {
         $this->db->where($cond);
-        return $this->db->update('kms_user_register', $data);
+        return $this->db->update('m_user_register', $data);
     }
 
     function insertUser($data)
     {
-        return $this->db->insert('kms_user', $data);
+        return $this->db->insert('m_user', $data);
     }
 
     function insertUserDetail($data)
     {
-        return $this->db->insert('kms_user_detail', $data);
+        return $this->db->insert('user_detail', $data);
     }
-
 }

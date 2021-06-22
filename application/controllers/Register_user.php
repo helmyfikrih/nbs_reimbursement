@@ -50,7 +50,7 @@ class Register_user extends CI_Controller
         $this->template->load('default', 'register_user/index', $data);
     }
 
-    
+
     public function getList()
     {
 
@@ -79,27 +79,27 @@ class Register_user extends CI_Controller
             $btnApprove2 = "";
             $labelApprove = "";
             $textApprove = "";
-           
+
             if ($field->email_verify_status == 1) {
                 $label = 'success';
                 $text = $this->lang->line('register_status_verify');
             }
-            if (($field->email_verify_status == 2)|| ($field->email_verify_status == null)) {
+            if (($field->email_verify_status == 2) || ($field->email_verify_status == null)) {
                 $label = 'warning';
                 $text = $this->lang->line('register_status_waiting');
             }
             if (($field->mandatory_approve == 1)) {
-                if($field->approve_status == 1){
+                if ($field->approve_status == 1) {
                     $labelApprove = 'success';
-                    $textApprove = $this->lang->line('register_status_verify');   
-                }else{
+                    $textApprove = $this->lang->line('register_status_verify');
+                } else {
                     $labelApprove = 'warning';
-                    $textApprove = $this->lang->line('register_status_waiting');   
+                    $textApprove = $this->lang->line('register_status_waiting');
                 }
-            } 
-            $uniqCode= $field->register_uniq_code;
-           if(($field->mandatory_approve==1) && ($field->email_verify_status == 1) && ($field->approve_status != 1)){
-                $btnApprove = '<a class="info" data-rel="tooltip" data-placement="bottom" href="javascript:;" onclick="approval(\''.$uniqCode.'\','.$field->register_id. ')" title="' . $this->lang->line('text_approve') . '">
+            }
+            $uniqCode = $field->register_uniq_code;
+            if (($field->mandatory_approve == 1) && ($field->email_verify_status == 1) && ($field->approve_status != 1)) {
+                $btnApprove = '<a class="info" data-rel="tooltip" data-placement="bottom" href="javascript:;" onclick="approval(\'' . $uniqCode . '\',' . $field->register_id . ')" title="' . $this->lang->line('text_approve') . '">
                             <i class="ace-icon fa fa-check-square-o bigger-130"></i>
                         </a>';
                 $btnApprove2 = '<li>
@@ -109,9 +109,9 @@ class Register_user extends CI_Controller
                                         </span>
                                     </a>
                                 </li>';
-           }
+            }
             $btn = '<div class="hidden-sm hidden-xs action-buttons">
-                    ' . $btnView . $btnUpload . $btnEdit . $btnDelete . $btnApprove.'
+                    ' . $btnView . $btnUpload . $btnEdit . $btnDelete . $btnApprove . '
                     </div>
                     <div class="hidden-md hidden-lg">
                         <div class="inline pos-rel">
@@ -130,7 +130,7 @@ class Register_user extends CI_Controller
             $statusEmail = '<span class="label label-sm label-' . $label . '">' . $text . '</span>';
             $statusApprove = '<span class="label label-sm label-' . $labelApprove . '">' . $textApprove . '</span>';
             $regisDate = date("H:i:s d-m-Y", strtotime($field->register_date));
-       
+
             // $row[] = $chkBox;
             $row[] = $field->register_full_name;
             $row[] = $field->register_nip;
@@ -158,7 +158,8 @@ class Register_user extends CI_Controller
         echo json_encode($output);
     }
 
-    function verify($id=null){
+    function verify($id = null)
+    {
         $uniqCode = $this->input->post('code');
         $cond = array(
             'register_uniq_code' => $uniqCode,
@@ -185,7 +186,7 @@ class Register_user extends CI_Controller
                 'designation_id' => 2,
                 'subject_id' => $getData[0]['register_subject_id'],
                 'ud_nik' => $getData[0]['register_nip'],
-                'ud_full_name' => $getData[0]['register_full_name']
+                'user_f_name' => $getData[0]['register_full_name']
             );
             $dataRegis = array(
                 'register_status' => 1,
@@ -195,7 +196,7 @@ class Register_user extends CI_Controller
             );
 
             $this->register->insertUserDetail($dataUserDetail);
-            $this->register->update($dataRegis,$cond);
+            $this->register->update($dataRegis, $cond);
 
             if ($this->db->trans_status() === FALSE) {
                 $this->db->trans_rollback();
@@ -229,5 +230,4 @@ class Register_user extends CI_Controller
         }
         echo json_encode($res);
     }
-   
 }

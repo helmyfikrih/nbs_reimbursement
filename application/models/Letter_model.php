@@ -43,7 +43,7 @@ class Letter_model extends CI_model
 
 		$this->db->select('ks.*, ku.user_username, ku.user_email');
 		$this->db->from('kms_surat ks');
-		$this->db->join('kms_user ku', 'ku.user_id=ks.user_id', 'left');
+		$this->db->join('m_user ku', 'ku.user_id=ks.user_id', 'left');
 		if ($cond) {
 			$this->db->where($cond);
 		}
@@ -94,7 +94,7 @@ class Letter_model extends CI_model
 		// $this->db->or_where(['bast.created_by_4w' => $username]);
 		$this->db->select('ks.*, ku.user_username');
 		$this->db->from('kms_surat ks');
-		$this->db->join('kms_user ku', 'ku.user_id=ks.user_id', 'left');
+		$this->db->join('m_user ku', 'ku.user_id=ks.user_id', 'left');
 		return $this->db->count_all_results();
 	}
 
@@ -127,11 +127,11 @@ class Letter_model extends CI_model
                     LEFT JOIN 
                         kms_surat_attachment ksa ON ksa.surat_id =ks.surat_id
                     LEFT JOIN 
-                        kms_user ku ON ku.user_id=ks.user_id
+                        m_user ku ON ku.user_id=ks.user_id
                     LEFT JOIN 
                         kms_schools ksc ON ku.school_id=ksc.school_id
                     LEFT JOIN 
-                        kms_user_detail kud ON kud.user_id=ku.user_id
+                        user_detail kud ON kud.user_id=ku.user_id
                     WHERE 
                         ks.surat_id = $docId AND ks.user_id='$userId' AND ks.surat_status IN $docStatus
                     GROUP  BY 
@@ -144,7 +144,7 @@ class Letter_model extends CI_model
 	{
 		$this->db->select('ksa.*, ku.user_username');
 		$this->db->from('kms_surat_attachment ksa');
-		$this->db->join('kms_user ku', 'ku.user_id=ksa.user_id', 'left');
+		$this->db->join('m_user ku', 'ku.user_id=ksa.user_id', 'left');
 		$this->db->where('surat_id', $docId);
 		return $this->db->get()->result_array();
 	}
@@ -168,9 +168,9 @@ class Letter_model extends CI_model
                     FROM 
                         kms_surat ks 
                     LEFT JOIN 
-                        kms_user ku ON ku.user_id=ks.user_id
+                        m_user ku ON ku.user_id=ks.user_id
                     LEFT JOIN 
-                        kms_user_detail kud ON kud.user_id=ku.user_id
+                        user_detail kud ON kud.user_id=ku.user_id
                     WHERE 
                         ks.surat_id = $docId AND ks.user_id='$user_id'";
 		$res = $this->db->query($query)->result_array();

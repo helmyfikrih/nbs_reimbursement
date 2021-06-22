@@ -30,7 +30,7 @@ class Role_model extends CI_model
     {
 
         $this->db->select('*');
-        $this->db->from('kms_user_role');
+        $this->db->from('m_role');
         if ($cond) {
             $this->db->where($cond);
         }
@@ -75,7 +75,7 @@ class Role_model extends CI_model
         // $this->db->or_where(['bast.created_by_4w' => $username]);
         $this->db->select('*
         ');
-        $this->db->from('kms_user_role');
+        $this->db->from('m_role');
         return $this->db->count_all_results();
     }
 
@@ -89,26 +89,31 @@ class Role_model extends CI_model
         return $query->num_rows();
     }
 
-    function insertRole($data){
-        return $this->db->insert('kms_user_role',$data);
+    function insertRole($data)
+    {
+        return $this->db->insert('m_role', $data);
     }
 
-    function updatetRole($data,$cond){
+    function updatetRole($data, $cond)
+    {
         $this->db->where($cond);
-        return $this->db->update('kms_user_role',$data);
+        return $this->db->update('m_role', $data);
     }
 
-    function getOne($id){
-        $this->db->where('role_id',$id);
-        return $this->db->get('kms_user_role')->result_array();
-    }
-
-    function deleteData($id){
+    function getOne($id)
+    {
         $this->db->where('role_id', $id);
-        return $this->db->delete('kms_user_role');
+        return $this->db->get('m_role')->result_array();
     }
 
-    function getAllRole(){
-        return $this->db->get('kms_user_role')->result_array();
+    function deleteData($id)
+    {
+        $this->db->where('role_id', $id);
+        return $this->db->delete('m_role');
+    }
+
+    function getAllRole()
+    {
+        return $this->db->get('m_role')->result_array();
     }
 }

@@ -42,7 +42,7 @@ class Document_model extends CI_model
         $this->db->select('kd.*, ku.user_username, kdt.doctype_name, ks.subject_name, ksc.school_name
         ');
         $this->db->from('kms_document kd');
-        $this->db->join('kms_user ku', 'ku.user_id=kd.user_id', 'left');
+        $this->db->join('m_user ku', 'ku.user_id=kd.user_id', 'left');
         $this->db->join('kms_schools ksc', 'kd.school_id=ksc.school_id', 'left');
         $this->db->join('kms_subject ks', 'ks.subject_id=kd.subject_id', 'left');
         $this->db->join('kms_document_type kdt', 'kdt.doctype_id=kd.doctype_id', 'left');
@@ -97,7 +97,7 @@ class Document_model extends CI_model
         $this->db->select('*
         ');
         $this->db->from('kms_document kd');
-        $this->db->join('kms_user ku', 'ku.user_id=kd.user_id', 'left');
+        $this->db->join('m_user ku', 'ku.user_id=kd.user_id', 'left');
         $this->db->join('kms_schools ksc', 'kd.school_id=ksc.school_id', 'left');
         $this->db->join('kms_subject ks', 'ks.subject_id=kd.subject_id', 'left');
         $this->db->join('kms_document_type kdt', 'kdt.doctype_id=kd.doctype_id', 'left');
@@ -133,11 +133,11 @@ class Document_model extends CI_model
                     LEFT JOIN 
                         kms_document_attachment kda ON kda.document_id =kd.document_id
                     LEFT JOIN 
-                        kms_user ku ON ku.user_id=kd.user_id
+                        m_user ku ON ku.user_id=kd.user_id
                     LEFT JOIN 
                         kms_schools ksc ON kd.school_id=ksc.school_id
                     LEFT JOIN 
-                        kms_user_detail kud ON kud.user_id=ku.user_id
+                        user_detail kud ON kud.user_id=ku.user_id
                     LEFT JOIN 
                         kms_document_type kdt ON kdt.doctype_id = kd.doctype_id
                     LEFT JOIN 
@@ -154,7 +154,7 @@ class Document_model extends CI_model
     {
         $this->db->select('kda.*, ku.user_username');
         $this->db->from('kms_document_attachment kda');
-        $this->db->join('kms_user ku', 'ku.user_id=kda.user_id', 'left');
+        $this->db->join('m_user ku', 'ku.user_id=kda.user_id', 'left');
         $this->db->where('document_id', $docId);
         return $this->db->get()->result_array();
     }
@@ -178,9 +178,9 @@ class Document_model extends CI_model
                     FROM 
                         kms_document kd 
                     LEFT JOIN 
-                        kms_user ku ON ku.user_id=kd.user_id
+                        m_user ku ON ku.user_id=kd.user_id
                     LEFT JOIN 
-                        kms_user_detail kud ON kud.user_id=ku.user_id
+                        user_detail kud ON kud.user_id=ku.user_id
                     WHERE 
                         kd.document_id = $docId AND kd.document_code='$docCode'";
         $res = $this->db->query($query)->result_array();

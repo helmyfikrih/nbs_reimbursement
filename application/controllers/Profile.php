@@ -12,13 +12,13 @@ class Profile extends CI_Controller
         if (empty($session_data)) {
             redirect('auth/login', 'refresh');
         }
-        $this->load->model('profile_model','profile');
-        $this->load->model('users_model','users');
+        $this->load->model('profile_model', 'profile');
+        $this->load->model('users_model', 'users');
         $this->load->model('settings_model', 'setting');
         $this->system = $this->setting->getSystemSettings();
         $this->sessionUserDetail = $this->users->sessionUserDetail();
         $this->menu_body     = $this->Menu_model->getmenu($session_data['user_id'], $session_data['username']);
-        
+
         // Menu Access Role
         $urlname    = strtolower($this->router->fetch_class());
         $menu_id       = $this->Menu_model->idMenu($urlname);
@@ -35,7 +35,7 @@ class Profile extends CI_Controller
 
     public function index()
     {
-        $this->load->model('subject_model','subject');
+        $this->load->model('subject_model', 'subject');
         $dataSubject = $this->subject->getAllSubject();
         $data = array(
             'title' => $this->lang->line('profile_title'),
@@ -48,7 +48,8 @@ class Profile extends CI_Controller
         $this->template->load('default', 'profile/index', $data);
     }
 
-    public function changeAvatar(){
+    public function changeAvatar()
+    {
         $id = $this->session->userdata('logged_in')['user_id'];
         $username = $this->session->userdata('logged_in')['username'];
         $config['upload_path'] = './assets/images/avatars/';
@@ -72,7 +73,7 @@ class Profile extends CI_Controller
         } else {
 
             //Image Resizing
-            if($this->upload->file_size>=700){
+            if ($this->upload->file_size >= 700) {
                 $config['source_image'] = $this->upload->upload_path . $this->upload->file_name;
                 $config['maintain_ratio'] = FALSE;
                 $config['width'] = 540;
@@ -86,13 +87,13 @@ class Profile extends CI_Controller
 
             $filedata = $this->upload->data();
             $updateProfile = $this->profile->changeAvatar($id, $filedata);
-            if($updateProfile){
+            if ($updateProfile) {
                 $res = array(
                     'is_success' => true,
                     'message' => $this->lang->line('profile_success_change_ava'),
                     'imgName' =>  $filedata['file_name']
                 );
-            }else{
+            } else {
                 $err = $this->db->error();
                 $msg = $err["code"] . "-" . $err["message"];
                 $res = array(
@@ -100,19 +101,19 @@ class Profile extends CI_Controller
                     'message' =>  $msg
                 );
             }
-           
         }
         echo json_encode($res);
     }
 
-    public function update(){
+    public function update()
+    {
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('type', 'type', 'required');
-        if($this->input->post('type')=='info'){
-           $res = $this->updateInfo();
+        if ($this->input->post('type') == 'info') {
+            $res = $this->updateInfo();
         }
-        if($this->input->post('type') == 'changePassword'){
+        if ($this->input->post('type') == 'changePassword') {
             $res = $this->changePassword();
         }
         if ($this->input->post('type') == 'changeUsername') {
@@ -124,7 +125,8 @@ class Profile extends CI_Controller
         echo json_encode($res);
     }
 
-    public function changePassword(){
+    public function changePassword()
+    {
         $this->form_validation->set_rules('oldPassword', $this->lang->line('profile_old_password'), 'trim|required|callback_oldPassword_check');
         $this->form_validation->set_rules('newPassword', $this->lang->line('profile_new_password'), 'trim|required');
         $this->form_validation->set_rules('confirmPassword', $this->lang->line('profile_conf_password'), 'trim|required|matches[newPassword]');
@@ -157,10 +159,11 @@ class Profile extends CI_Controller
         return $res;
     }
 
-    public function oldPassword_check($password){
-        $this->load->model('login_model','login');
+    public function oldPassword_check($password)
+    {
+        $this->load->model('login_model', 'login');
         $oldPassword = $this->login->getUserPassword();
-        if($oldPassword[0]['user_password'] == md5($password)){
+        if ($oldPassword[0]['user_password'] == md5($password)) {
             return true;
         } else {
             $this->form_validation->set_message('oldPassword_check', $this->lang->line('profile_warning_dif_old_password'));
@@ -168,7 +171,8 @@ class Profile extends CI_Controller
         }
     }
 
-    public function updateInfo(){
+    public function updateInfo()
+    {
         $this->form_validation->set_rules('fullName', $this->lang->line('profile_full_name'), 'trim|required');
         if ($this->form_validation->run() == FALSE) {
             $res =  array(
@@ -195,8 +199,9 @@ class Profile extends CI_Controller
         return $res;
     }
 
-    function changeUsername(){
-        $this->form_validation->set_rules('username',  $this->lang->line('profile_username'), 'trim|required|is_unique[kms_user.user_username]');
+    function changeUsername()
+    {
+        $this->form_validation->set_rules('username',  $this->lang->line('profile_username'), 'trim|required|is_unique[m_user.user_username]');
         if ($this->form_validation->run() == FALSE) {
             $res =  array(
                 'is_success' => false,
@@ -230,7 +235,8 @@ class Profile extends CI_Controller
         return $res;
     }
 
-    public function removeAvatar(){
+    public function removeAvatar()
+    {
         $remove = $this->profile->removeAvatar();
         if ($remove) {
             $res = array(
@@ -249,8 +255,9 @@ class Profile extends CI_Controller
         echo json_encode($res);
     }
 
-    function changeEmail(){
-        $this->form_validation->set_rules('email', 'E-mail', 'trim|required|is_unique[kms_user.user_email]');
+    function changeEmail()
+    {
+        $this->form_validation->set_rules('email', 'E-mail', 'trim|required|is_unique[m_user.user_email]');
         if ($this->form_validation->run() == FALSE) {
             $res =  array(
                 'is_success' => false,
@@ -324,5 +331,4 @@ class Profile extends CI_Controller
         }
         echo json_encode($res);
     }
-
 }

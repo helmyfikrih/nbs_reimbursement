@@ -211,10 +211,10 @@ INSERT INTO `kms_meeting_type` (`meetType_id`, `meetType_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kms_menu`
+-- Table structure for table `m_menu`
 --
 
-CREATE TABLE `kms_menu` (
+CREATE TABLE `m_menu` (
   `menu_id` int(11) NOT NULL,
   `menu_url` varchar(255) NOT NULL,
   `menu_name` varchar(255) NOT NULL,
@@ -228,10 +228,10 @@ CREATE TABLE `kms_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kms_menu`
+-- Dumping data for table `m_menu`
 --
 
-INSERT INTO `kms_menu` (`menu_id`, `menu_url`, `menu_name`, `menu_nama`, `menu_parent`, `menu_child`, `menu_sort`, `menu_icon`, `menu_status`, `menu_access`) VALUES
+INSERT INTO `m_menu` (`menu_id`, `menu_url`, `menu_name`, `menu_nama`, `menu_parent`, `menu_child`, `menu_sort`, `menu_icon`, `menu_status`, `menu_access`) VALUES
 (1, 'home', 'Home', 'Home', 0, 0, 1, 'fa fa-home', 1, NULL),
 (2, '#', 'Minutes', 'Notulensi', 0, 1, 2, 'fa fa-edit', 1, NULL),
 (3, 'user', 'Data Users', 'Data Pengguna', 12, 0, 1, 'fa fa-user', 1, 'add,delete,view,edit'),
@@ -410,10 +410,10 @@ INSERT INTO `kms_system_settings` (`setting_id`, `application_name`, `header_nam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kms_user`
+-- Table structure for table `m_user`
 --
 
-CREATE TABLE `kms_user` (
+CREATE TABLE `m_user` (
   `user_id` bigint(20) NOT NULL,
   `role_id` int(11) DEFAULT NULL,
   `school_id` bigint(20) DEFAULT NULL,
@@ -430,24 +430,24 @@ CREATE TABLE `kms_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kms_user`
+-- Dumping data for table `m_user`
 --
 
-INSERT INTO `kms_user` (`user_id`, `role_id`, `school_id`, `user_username`, `user_email`, `user_password`, `user_ip`, `user_browser`, `user_created_date`, `user_created_by`, `user_last_update`, `user_last_update_by`, `user_status`) VALUES
+INSERT INTO `m_user` (`user_id`, `role_id`, `school_id`, `user_username`, `user_email`, `user_password`, `user_ip`, `user_browser`, `user_created_date`, `user_created_by`, `user_last_update`, `user_last_update_by`, `user_status`) VALUES
 (1, 1, NULL, 'admin', 'helmyfikrih@gmail.com', '21232f297a57a5a743894a0e4a801fc3', '::1', 'Chrome 87.0.4280.88', NULL, NULL, '2020-12-21 18:37:53', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kms_user_detail`
+-- Table structure for table `user_detail`
 --
 
-CREATE TABLE `kms_user_detail` (
+CREATE TABLE `user_detail` (
   `ud_id` bigint(20) NOT NULL,
   `designation_id` int(11) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   `subject_id` int(11) DEFAULT NULL,
-  `ud_full_name` varchar(255) DEFAULT NULL,
+  `user_f_name` varchar(255) DEFAULT NULL,
   `ud_gender` varchar(2) DEFAULT NULL,
   `ud_nik` varchar(255) DEFAULT NULL,
   `ud_address` text DEFAULT NULL,
@@ -463,10 +463,10 @@ CREATE TABLE `kms_user_detail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kms_user_forgot_password`
+-- Table structure for table `m_user_forgot_password`
 --
 
-CREATE TABLE `kms_user_forgot_password` (
+CREATE TABLE `m_user_forgot_password` (
   `forgot_password_id` bigint(20) NOT NULL,
   `forgot_password_token` varchar(255) NOT NULL,
   `forgot_password_email` varchar(255) NOT NULL,
@@ -478,10 +478,10 @@ CREATE TABLE `kms_user_forgot_password` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kms_user_register`
+-- Table structure for table `m_user_register`
 --
 
-CREATE TABLE `kms_user_register` (
+CREATE TABLE `m_user_register` (
   `register_id` bigint(20) NOT NULL,
   `register_full_name` varchar(255) NOT NULL,
   `register_school_id` int(11) NOT NULL,
@@ -507,10 +507,10 @@ CREATE TABLE `kms_user_register` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kms_user_role`
+-- Table structure for table `m_role`
 --
 
-CREATE TABLE `kms_user_role` (
+CREATE TABLE `m_role` (
   `role_id` int(11) NOT NULL,
   `role_code` varchar(255) DEFAULT NULL,
   `role_name` varchar(255) NOT NULL,
@@ -523,10 +523,10 @@ CREATE TABLE `kms_user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kms_user_role`
+-- Dumping data for table `m_role`
 --
 
-INSERT INTO `kms_user_role` (`role_id`, `role_code`, `role_name`, `role_allow_menu`, `role_status`, `role_created_date`, `role_created_by`, `role_last_update`, `role_last_update_by`) VALUES
+INSERT INTO `m_role` (`role_id`, `role_code`, `role_name`, `role_allow_menu`, `role_status`, `role_created_date`, `role_created_by`, `role_last_update`, `role_last_update_by`) VALUES
 (1, 'adm', 'Admin', '1,2,11,level_11_add,level_11_edit,level_11_delete,level_11_validasi,level_11_view,6,9,level_9_upload,level_9_add,level_9_validasi,level_9_edit,level_9_delete,level_9_view,7,10,level_10_add,level_10_comment,level_10_edit,level_10_delete,level_10_close,level_10_open,24,16,level_16_add,level_16_edit,level_16_delete,level_16_view,20,21,4,5,12,19,3,level_3_add,level_3_delete,level_3_view,level_3_edit,14,8,13,23,level_23_add,level_23_view,level_23_edit,15,18,17', 1, '2020-05-28 21:42:11', 1, NULL, NULL),
 (2, 'guru', 'Guru', '1,2,11,level_11_add,level_11_edit,level_11_view,6,9,level_9_upload,level_9_add,level_9_edit,level_9_view,7,10,level_10_add,level_10_comment,level_10_edit,24,16,level_16_view,4,5,12,3,level_3_view', 1, '2020-05-28 21:23:09', 1, NULL, NULL),
 (3, 'op', 'Operator', '1,2,11,level_11_add,level_11_edit,level_11_validasi,level_11_view,6,9,level_9_upload,level_9_add,level_9_validasi,level_9_edit,7,10,level_10_add,level_10_comment,level_10_close,level_10_open,24,16,level_16_add,level_16_edit,level_16_view,4,5,12,19,3,level_3_view', 1, '2020-05-28 21:23:15', 1, NULL, NULL),
@@ -614,7 +614,7 @@ ALTER TABLE `kms_document`
   ADD PRIMARY KEY (`document_id`),
   ADD KEY `FK_KMS_DOC_REL_KMS_SUBJ` (`subject_id`),
   ADD KEY `FK_KMS_DOC_REL_KMS_SCHOOL` (`school_id`),
-  ADD KEY `FK_KMS_DOC_REL_KMS_USER` (`user_id`),
+  ADD KEY `FK_KMS_DOC_REL_m_user` (`user_id`),
   ADD KEY `FK_KMS_DOC_REL_KMS_DOC_TYPE` (`doctype_id`);
 
 --
@@ -623,7 +623,7 @@ ALTER TABLE `kms_document`
 ALTER TABLE `kms_document_attachment`
   ADD PRIMARY KEY (`da_id`),
   ADD KEY `FK_KMS_DOC_ATT_REL_KMS_DOC` (`document_id`),
-  ADD KEY `FK_KMS_DOC_ATT_REL_KMS_USER` (`user_id`);
+  ADD KEY `FK_KMS_DOC_ATT_REL_m_user` (`user_id`);
 
 --
 -- Indexes for table `kms_document_type`
@@ -636,7 +636,7 @@ ALTER TABLE `kms_document_type`
 --
 ALTER TABLE `kms_forum`
   ADD PRIMARY KEY (`forum_id`),
-  ADD KEY `FK_KMS_FORUM_REL_KMS_USER` (`user_id`);
+  ADD KEY `FK_KMS_FORUM_REL_m_user` (`user_id`);
 
 --
 -- Indexes for table `kms_forum_comment`
@@ -644,14 +644,14 @@ ALTER TABLE `kms_forum`
 ALTER TABLE `kms_forum_comment`
   ADD PRIMARY KEY (`fc_id`),
   ADD KEY `FK_KMS_FORUM_CMNT_REL_KMS_FORUM` (`forum_id`),
-  ADD KEY `FK_KMS_FORUM_CMNT_REL_KMS_USER` (`user_id`);
+  ADD KEY `FK_KMS_FORUM_CMNT_REL_m_user` (`user_id`);
 
 --
 -- Indexes for table `kms_log_search`
 --
 ALTER TABLE `kms_log_search`
   ADD PRIMARY KEY (`ls_id`),
-  ADD KEY `FK_KMS_LOGS__REL_KMS_USER` (`user_id`);
+  ADD KEY `FK_KMS_LOGS__REL_m_user` (`user_id`);
 
 --
 -- Indexes for table `kms_meeting_type`
@@ -660,9 +660,9 @@ ALTER TABLE `kms_meeting_type`
   ADD PRIMARY KEY (`meetType_id`);
 
 --
--- Indexes for table `kms_menu`
+-- Indexes for table `m_menu`
 --
-ALTER TABLE `kms_menu`
+ALTER TABLE `m_menu`
   ADD PRIMARY KEY (`menu_id`);
 
 --
@@ -670,14 +670,14 @@ ALTER TABLE `kms_menu`
 --
 ALTER TABLE `kms_notification`
   ADD PRIMARY KEY (`notif_id`),
-  ADD KEY `FK_KMS_NOTIF_REL_KMS_USER` (`user_id`);
+  ADD KEY `FK_KMS_NOTIF_REL_m_user` (`user_id`);
 
 --
 -- Indexes for table `kms_notulensi`
 --
 ALTER TABLE `kms_notulensi`
   ADD PRIMARY KEY (`notulensi_id`),
-  ADD KEY `FK_KMS_NOTE_REL_KMS_USER` (`user_id`),
+  ADD KEY `FK_KMS_NOTE_REL_m_user` (`user_id`),
   ADD KEY `FK_KMS_NOTE_REL_KMS_SCHOOL` (`school_id`),
   ADD KEY `FK_KMS_NOTE_REL_KMS_MEET_TYPE` (`meetType_id`);
 
@@ -713,38 +713,38 @@ ALTER TABLE `kms_system_settings`
   ADD PRIMARY KEY (`setting_id`);
 
 --
--- Indexes for table `kms_user`
+-- Indexes for table `m_user`
 --
-ALTER TABLE `kms_user`
+ALTER TABLE `m_user`
   ADD PRIMARY KEY (`user_id`),
-  ADD KEY `FK_KMS_USER_REL_KMS_SCHOOL` (`school_id`),
-  ADD KEY `FK_KMS_USER_REL_KMS_USER_ROLE` (`role_id`);
+  ADD KEY `FK_m_user_REL_KMS_SCHOOL` (`school_id`),
+  ADD KEY `FK_m_user_REL_m_role` (`role_id`);
 
 --
--- Indexes for table `kms_user_detail`
+-- Indexes for table `user_detail`
 --
-ALTER TABLE `kms_user_detail`
+ALTER TABLE `user_detail`
   ADD PRIMARY KEY (`ud_id`),
-  ADD KEY `FK_KMS_USERD_REL_KMS_USER` (`user_id`),
-  ADD KEY `FK_KMS_USERD_REL_KMS_SUBJ` (`subject_id`),
-  ADD KEY `FK_KMS_USERD_REL_KMS_DESIGNATION` (`designation_id`);
+  ADD KEY `FK_m_userD_REL_m_user` (`user_id`),
+  ADD KEY `FK_m_userD_REL_KMS_SUBJ` (`subject_id`),
+  ADD KEY `FK_m_userD_REL_KMS_DESIGNATION` (`designation_id`);
 
 --
--- Indexes for table `kms_user_forgot_password`
+-- Indexes for table `m_user_forgot_password`
 --
-ALTER TABLE `kms_user_forgot_password`
+ALTER TABLE `m_user_forgot_password`
   ADD PRIMARY KEY (`forgot_password_id`);
 
 --
--- Indexes for table `kms_user_register`
+-- Indexes for table `m_user_register`
 --
-ALTER TABLE `kms_user_register`
+ALTER TABLE `m_user_register`
   ADD PRIMARY KEY (`register_id`);
 
 --
--- Indexes for table `kms_user_role`
+-- Indexes for table `m_role`
 --
-ALTER TABLE `kms_user_role`
+ALTER TABLE `m_role`
   ADD PRIMARY KEY (`role_id`);
 
 --
@@ -752,7 +752,7 @@ ALTER TABLE `kms_user_role`
 --
 ALTER TABLE `topsis_alternatif`
   ADD PRIMARY KEY (`topsis_alternatif_id`),
-  ADD KEY `FK_TOPSIS_ALT_REL_KMS_USER` (`user_id`);
+  ADD KEY `FK_TOPSIS_ALT_REL_m_user` (`user_id`);
 
 --
 -- Indexes for table `topsis_alternatif_kriteria`
@@ -767,7 +767,7 @@ ALTER TABLE `topsis_alternatif_kriteria`
 --
 ALTER TABLE `topsis_hasil`
   ADD PRIMARY KEY (`topsis_hasil_id`),
-  ADD KEY `FK_TOPSIS_HASIL_REL_KMS_USER` (`user_id`);
+  ADD KEY `FK_TOPSIS_HASIL_REL_m_user` (`user_id`);
 
 --
 -- Indexes for table `topsis_kriteria`
@@ -840,9 +840,9 @@ ALTER TABLE `kms_meeting_type`
   MODIFY `meetType_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `kms_menu`
+-- AUTO_INCREMENT for table `m_menu`
 --
-ALTER TABLE `kms_menu`
+ALTER TABLE `m_menu`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
@@ -882,33 +882,33 @@ ALTER TABLE `kms_system_settings`
   MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `kms_user`
+-- AUTO_INCREMENT for table `m_user`
 --
-ALTER TABLE `kms_user`
+ALTER TABLE `m_user`
   MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `kms_user_detail`
+-- AUTO_INCREMENT for table `user_detail`
 --
-ALTER TABLE `kms_user_detail`
+ALTER TABLE `user_detail`
   MODIFY `ud_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `kms_user_forgot_password`
+-- AUTO_INCREMENT for table `m_user_forgot_password`
 --
-ALTER TABLE `kms_user_forgot_password`
+ALTER TABLE `m_user_forgot_password`
   MODIFY `forgot_password_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `kms_user_register`
+-- AUTO_INCREMENT for table `m_user_register`
 --
-ALTER TABLE `kms_user_register`
+ALTER TABLE `m_user_register`
   MODIFY `register_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `kms_user_role`
+-- AUTO_INCREMENT for table `m_role`
 --
-ALTER TABLE `kms_user_role`
+ALTER TABLE `m_role`
   MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -958,39 +958,39 @@ ALTER TABLE `kms_document`
   ADD CONSTRAINT `FK_KMS_DOC_REL_KMS_DOC_TYPE` FOREIGN KEY (`doctype_id`) REFERENCES `kms_document_type` (`doctype_id`),
   ADD CONSTRAINT `FK_KMS_DOC_REL_KMS_SCHOOL` FOREIGN KEY (`school_id`) REFERENCES `kms_schools` (`school_id`),
   ADD CONSTRAINT `FK_KMS_DOC_REL_KMS_SUBJ` FOREIGN KEY (`subject_id`) REFERENCES `kms_subject` (`subject_id`),
-  ADD CONSTRAINT `FK_KMS_DOC_REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+  ADD CONSTRAINT `FK_KMS_DOC_REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 
 --
 -- Constraints for table `kms_document_attachment`
 --
 ALTER TABLE `kms_document_attachment`
   ADD CONSTRAINT `FK_KMS_DOC_ATT_REL_KMS_DOC` FOREIGN KEY (`document_id`) REFERENCES `kms_document` (`document_id`),
-  ADD CONSTRAINT `FK_KMS_DOC_ATT_REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+  ADD CONSTRAINT `FK_KMS_DOC_ATT_REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 
 --
 -- Constraints for table `kms_forum`
 --
 ALTER TABLE `kms_forum`
-  ADD CONSTRAINT `FK_KMS_FORUM_REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+  ADD CONSTRAINT `FK_KMS_FORUM_REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 
 --
 -- Constraints for table `kms_forum_comment`
 --
 ALTER TABLE `kms_forum_comment`
   ADD CONSTRAINT `FK_KMS_FORUM_CMNT_REL_KMS_FORUM` FOREIGN KEY (`forum_id`) REFERENCES `kms_forum` (`forum_id`),
-  ADD CONSTRAINT `FK_KMS_FORUM_CMNT_REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+  ADD CONSTRAINT `FK_KMS_FORUM_CMNT_REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 
 --
 -- Constraints for table `kms_log_search`
 --
 ALTER TABLE `kms_log_search`
-  ADD CONSTRAINT `FK_KMS_LOGS__REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+  ADD CONSTRAINT `FK_KMS_LOGS__REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 
 --
 -- Constraints for table `kms_notification`
 --
 ALTER TABLE `kms_notification`
-  ADD CONSTRAINT `FK_KMS_NOTIF_REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+  ADD CONSTRAINT `FK_KMS_NOTIF_REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 
 --
 -- Constraints for table `kms_notulensi`
@@ -998,7 +998,7 @@ ALTER TABLE `kms_notification`
 ALTER TABLE `kms_notulensi`
   ADD CONSTRAINT `FK_KMS_NOTE_REL_KMS_MEET_TYPE` FOREIGN KEY (`meetType_id`) REFERENCES `kms_meeting_type` (`meetType_id`),
   ADD CONSTRAINT `FK_KMS_NOTE_REL_KMS_SCHOOL` FOREIGN KEY (`school_id`) REFERENCES `kms_schools` (`school_id`),
-  ADD CONSTRAINT `FK_KMS_NOTE_REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+  ADD CONSTRAINT `FK_KMS_NOTE_REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 
 --
 -- Constraints for table `kms_notulensi_attachment`
@@ -1007,25 +1007,25 @@ ALTER TABLE `kms_notulensi_attachment`
   ADD CONSTRAINT `FK_KMS_NOTE_ATT_REL_KMS_NOTE` FOREIGN KEY (`notulensi_id`) REFERENCES `kms_notulensi` (`notulensi_id`);
 
 --
--- Constraints for table `kms_user`
+-- Constraints for table `m_user`
 --
-ALTER TABLE `kms_user`
-  ADD CONSTRAINT `FK_KMS_USER_REL_KMS_SCHOOL` FOREIGN KEY (`school_id`) REFERENCES `kms_schools` (`school_id`),
-  ADD CONSTRAINT `FK_KMS_USER_REL_KMS_USER_ROLE` FOREIGN KEY (`role_id`) REFERENCES `kms_user_role` (`role_id`);
+ALTER TABLE `m_user`
+  ADD CONSTRAINT `FK_m_user_REL_KMS_SCHOOL` FOREIGN KEY (`school_id`) REFERENCES `kms_schools` (`school_id`),
+  ADD CONSTRAINT `FK_m_user_REL_m_role` FOREIGN KEY (`role_id`) REFERENCES `m_role` (`role_id`);
 
 --
--- Constraints for table `kms_user_detail`
+-- Constraints for table `user_detail`
 --
-ALTER TABLE `kms_user_detail`
-  ADD CONSTRAINT `FK_KMS_USERD_REL_KMS_DESIGNATION` FOREIGN KEY (`designation_id`) REFERENCES `kms_designation` (`designation_id`),
-  ADD CONSTRAINT `FK_KMS_USERD_REL_KMS_SUBJ` FOREIGN KEY (`subject_id`) REFERENCES `kms_subject` (`subject_id`),
-  ADD CONSTRAINT `FK_KMS_USERD_REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+ALTER TABLE `user_detail`
+  ADD CONSTRAINT `FK_m_userD_REL_KMS_DESIGNATION` FOREIGN KEY (`designation_id`) REFERENCES `kms_designation` (`designation_id`),
+  ADD CONSTRAINT `FK_m_userD_REL_KMS_SUBJ` FOREIGN KEY (`subject_id`) REFERENCES `kms_subject` (`subject_id`),
+  ADD CONSTRAINT `FK_m_userD_REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 
 --
 -- Constraints for table `topsis_alternatif`
 --
 ALTER TABLE `topsis_alternatif`
-  ADD CONSTRAINT `FK_TOPSIS_ALT_REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+  ADD CONSTRAINT `FK_TOPSIS_ALT_REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 
 --
 -- Constraints for table `topsis_alternatif_kriteria`
@@ -1038,7 +1038,7 @@ ALTER TABLE `topsis_alternatif_kriteria`
 -- Constraints for table `topsis_hasil`
 --
 ALTER TABLE `topsis_hasil`
-  ADD CONSTRAINT `FK_TOPSIS_HASIL_REL_KMS_USER` FOREIGN KEY (`user_id`) REFERENCES `kms_user` (`user_id`);
+  ADD CONSTRAINT `FK_TOPSIS_HASIL_REL_m_user` FOREIGN KEY (`user_id`) REFERENCES `m_user` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

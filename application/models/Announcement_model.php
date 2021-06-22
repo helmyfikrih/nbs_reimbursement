@@ -43,7 +43,7 @@ class Announcement_model extends CI_model
 
         $this->db->select('ka.*, ks.school_name, ks.school_id, ku.user_username');
         $this->db->from('kms_announcement ka');
-        $this->db->join('kms_user ku', 'ku.user_id=ka.announ_created_by', 'left');
+        $this->db->join('m_user ku', 'ku.user_id=ka.announ_created_by', 'left');
         $this->db->join('kms_schools ks', 'ks.school_id=ka.school_id', 'left');
         if ($cond) {
             $this->db->where($cond);
@@ -94,7 +94,7 @@ class Announcement_model extends CI_model
         // $this->db->or_where(['bast.created_by_4w' => $username]);
         $this->db->select('ka.*, ks.school_name, ks.school_id, ku.user_username');
         $this->db->from('kms_announcement ka');
-        $this->db->join('kms_user ku', 'ku.user_id=ka.announ_created_by', 'left');
+        $this->db->join('m_user ku', 'ku.user_id=ka.announ_created_by', 'left');
         $this->db->join('kms_schools ks', 'ks.school_id=ka.school_id', 'left');
         if ($cond) {
             $this->db->where($cond);
@@ -137,9 +137,9 @@ class Announcement_model extends CI_model
     {
         $this->db->select('ka.*, ku.user_username, ks.school_name, ks.school_id, role_name');
         $this->db->from('kms_announcement ka');
-        $this->db->join('kms_user ku', 'ku.user_id=ka.announ_created_by','left');
-        $this->db->join('kms_user_role kur', 'kur.role_id=ku.role_id','left');
-        $this->db->join('kms_schools ks', 'ks.school_id=ka.school_id','left');
+        $this->db->join('m_user ku', 'ku.user_id=ka.announ_created_by', 'left');
+        $this->db->join('m_role kur', 'kur.role_id=ku.role_id', 'left');
+        $this->db->join('kms_schools ks', 'ks.school_id=ka.school_id', 'left');
         $this->db->where('ka.announ_id', $id);
         // $this->db->where('ka.announ_number', $number);
         $this->db->where('ka.announ_status', 1);
@@ -150,7 +150,7 @@ class Announcement_model extends CI_model
     {
         $this->db->select('kaa.*');
         $this->db->from('kms_announcement ka');
-        $this->db->join('kms_announcement_attachment kaa','kaa.announ_id=ka.announ_id','left');
+        $this->db->join('kms_announcement_attachment kaa', 'kaa.announ_id=ka.announ_id', 'left');
         $this->db->where('ka.announ_id', $id);
         return $this->db->get()->result_array();
     }
@@ -160,16 +160,17 @@ class Announcement_model extends CI_model
         $this->db->select('kaa.*, ks.school_id');
         $this->db->from('kms_announcement_attachment kaa');
         $this->db->join('kms_announcement ka', 'ka.announ_id=kaa.announ_id');
-        $this->db->join('kms_user ku', 'ku.user_id=ka.announ_created_by');
-        $this->db->join('kms_schools ks', 'ks.school_id=ku.school_id','left');
+        $this->db->join('m_user ku', 'ku.user_id=ka.announ_created_by');
+        $this->db->join('kms_schools ks', 'ks.school_id=ku.school_id', 'left');
         $this->db->where('kaa.aa_id', $id);
         return $this->db->get()->result_array();
     }
 
-    function getSchoolAnnoun($id){
+    function getSchoolAnnoun($id)
+    {
         $this->db->select('ks.school_id');
         $this->db->from('kms_announcement ka');
-        $this->db->join('kms_user ku', 'ku.user_id=ka.announ_created_by');
+        $this->db->join('m_user ku', 'ku.user_id=ka.announ_created_by');
         $this->db->join('kms_schools ks', 'ks.school_id=ku.school_id', 'left');
         $this->db->where('ka.announ_id', $id);
         return $this->db->get()->result_array();
@@ -181,7 +182,8 @@ class Announcement_model extends CI_model
         return $this->db->delete('kms_announcement');
     }
 
-    function deleteAttach($id){
+    function deleteAttach($id)
+    {
         $this->db->where('aa_id', $id);
         return $this->db->delete('kms_announcement_attachment');
     }
