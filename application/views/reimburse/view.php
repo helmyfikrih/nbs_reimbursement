@@ -109,7 +109,7 @@ if ($reimburseDetail[0]['reimburse_status'] == 4) {
 							</div>
 
 							<div class="profile-info-row">
-								<div class="profile-info-name"> Ketrangan Surat </div>
+								<div class="profile-info-name"> Reimburse Note </div>
 
 								<div class="profile-info-value">
 									<span class="editable "><?= $reimburseDetail[0]['reimburse_note'] ?></span>
@@ -148,7 +148,7 @@ if ($reimburseDetail[0]['reimburse_status'] == 4) {
 								<div class="widget-header widget-header-small">
 									<h4 class="widget-title blue smaller pull-left">
 										<i class="ace-icon fa fa-file blue"></i>
-										Lampiran Surat
+										Lampiran File Bukti
 									</h4>
 
 									<div class="widget-toolbar action-buttons">

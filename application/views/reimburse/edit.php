@@ -60,7 +60,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-xs-6 animated fadeIn">
 							<div>
 								<label for="notulensi_date">
-									Date Start
+									Start Date
 									<small class="text-warning"></small>
 								</label>
 								<input class="form-control" type="date" id="reimburse_start_date" name="reimburse_start_date" placeholder="" required value="<?= P($reimburseDetail[0]['reimburse_start_date']) ?>">
@@ -69,7 +69,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-xs-6" id="subjectDiv">
 							<div class="animated fadeIn">
 								<label for="form-field-mask-2">
-									Date End
+									End Date
 									<!-- <small class="text-warning">(999) 999-9999</small> -->
 								</label>
 								<input class="form-control" type="date" id="reimburse_end_date" name="reimburse_end_date" placeholder="" required value="<?= P($reimburseDetail[0]['reimburse_end_date']) ?>">
@@ -98,7 +98,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 							<a class="btn btn-success add_button">
 								<i class="ace-icon fa fa-plus bigger-110"></i>
-								<?= $this->lang->line('document_add_attach') ?>
+								Tambahkan Bukti
 							</a>
 						</div>
 					</div>
@@ -108,7 +108,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<div class="widget-header widget-header-small">
 								<h4 class="widget-title blue smaller pull-left">
 									<i class="ace-icon fa fa-file blue"></i>
-									<?= $this->lang->line('document_attach') ?>
+									List Bukti
 								</h4>
 
 								<div class="widget-toolbar action-buttons">

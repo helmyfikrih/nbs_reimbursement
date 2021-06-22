@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<div class="page-content">
 
 			<div class="page-header">
-				<h1>Claim</h1>
+				<h1>Create Claim</h1>
 			</div><!-- /.page-header -->
 
 			<div class="row">
@@ -58,7 +58,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-xs-6 animated fadeIn">
 							<div>
 								<label for="notulensi_date">
-									Date Start
+									Start Date
 									<small class="text-warning"></small>
 								</label>
 								<input class="form-control" type="date" id="reimburse_start_date" name="reimburse_start_date" placeholder="" required>
@@ -67,7 +67,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-xs-6" id="subjectDiv">
 							<div class="animated fadeIn">
 								<label for="form-field-mask-2">
-									Date End
+									End Date
 									<!-- <small class="text-warning">(999) 999-9999</small> -->
 								</label>
 								<input class="form-control" type="date" id="reimburse_end_date" name="reimburse_end_date" placeholder="" required>
@@ -78,7 +78,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<hr>
 						<div>
 							<label for="form-field-mask-2">
-								Keterangan Surat
+								Reimburse Note
 								<small class="text-warning"></small>
 							</label>
 

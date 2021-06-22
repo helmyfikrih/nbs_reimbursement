@@ -333,7 +333,7 @@ class Reimburse extends CI_Controller
                                 </li>';
 				}
 			}
-			if ((in_array($this->data['menu_allow'] . '_delete', $this->data['user_allow_menu']))) {
+			if ((in_array($this->data['menu_allow'] . '_delete', $this->data['user_allow_menu']) && $field->reimburse_status == 2)) {
 				$btnDelete = '<a class="red" data-rel="tooltip" data-placement="bottom" href="javascript:;" onclick="approval(0,' . $field->reimburse_id . ', \'' . $field->user_id . '\')" title="' . $this->lang->line('document_delete') . '">
                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
                         </a>';

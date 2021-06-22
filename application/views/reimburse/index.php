@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 				<div class="clearfix">
 					<div class="pull-left">
-						<h1>List Reimbursement</h1>
+						<h1>Reimburse List</h1>
 					</div>
 					<div class="pull-right">
 						<?php if ((in_array($menu_allow . '_add', $user_allow_menu))) { ?>
