@@ -90,13 +90,13 @@ class Users_model extends CI_model
 
 	public function count_new($cond = null)
 	{
-		$this->db->select('ud.*,u.user_username, u.user_status, u.user_created_date, ur.role_name, kdes.designation_name, u.user_email, u.user_id as u_id, ks.school_name
+		$this->db->select('ud.*,u.user_username, u.user_status, u.user_created_date, ur.role_name, kdes.designation_name, u.user_email, u.user_id as u_id
         ');
 		$this->db->from('m_user u');
 		$this->db->join('user_detail ud', 'u.user_id=ud.user_id', 'left');
 		$this->db->join('m_role ur', 'ur.role_id=u.role_id', 'left');
 		$this->db->join('kms_designation kdes', 'kdes.designation_id=ud.designation_id', 'left');
-		$this->db->join('kms_schools ks', 'ks.school_id=u.school_id', 'left');
+		// $this->db->join('kms_schools ks', 'ks.school_id=u.school_id', 'left');
 		if ($cond) {
 			$this->db->where($cond);
 		}
@@ -205,19 +205,13 @@ class Users_model extends CI_model
 	function getOneUser($userId, $username, $status)
 	{
 		$query = "SELECT 
-                        ud.*, u.user_username, role_name, u.user_created_date, u.user_password, user_status, u.role_id, ks.subject_name, kdes.designation_name, user_email, u.school_id, ksc.school_name
+                        ud.*, u.user_username, role_name, u.user_created_date, u.user_password, user_status, u.role_id, user_email, u.school_id
                     FROM 
                         m_user u 
                     LEFT JOIN 
                         user_detail ud ON ud.user_id =u.user_id
                     LEFT JOIN 
                         m_role role ON role.role_id =u.role_id
-                    LEFT JOIN 
-                        kms_designation kdes ON kdes.designation_id =ud.designation_id
-                    LEFT JOIN
-                        kms_subject ks ON ks.subject_id =ud.subject_id
-                    LEFT JOIN
-                        kms_schools ksc ON ksc.school_id =ksc.school_id
                     WHERE 
                         u.user_id = $userId AND u.user_username='$username' 
                     ";

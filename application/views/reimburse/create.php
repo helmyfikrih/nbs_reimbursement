@@ -10,31 +10,31 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<a href="#"><?= $this->lang->line('home_title') ?></a>
 				</li>
 				<li>
-					<a href="#">Surat</a>
+					<a href="#">Reimburse List</a>
 				</li>
-				<li class="active">Buat Surat</li>
+				<li class="active">Claim</li>
 			</ul><!-- /.breadcrumb -->
 		</div>
 
 		<div class="page-content">
 
 			<div class="page-header">
-				<h1>Buat Surat</h1>
+				<h1>Claim</h1>
 			</div><!-- /.page-header -->
 
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
-					<?php echo form_open_multipart('letter/save', 'class="form-horizontal" id="form" role="form"'); ?>
+					<?php echo form_open_multipart('reimburse/save', 'class="form-horizontal" id="form" role="form"'); ?>
 					<div class="col-md-12">
 						<div class="col-xs-6">
 							<div>
 								<label for="notulensi_date">
-									Nomor Surat
+									Value to Claim
 									<small class="text-warning"></small>
 								</label>
 
-								<input class="form-control" type="text" id="surat_nomor" name="surat_nomor" placeholder="Nomor Surat" required>
+								<input class="form-control" type="number" id="reimburse_value" name="reimburse_value" placeholder="Jumlah Claim" required>
 							</div>
 						</div>
 						<div class="col-xs-6">
@@ -83,7 +83,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							</label>
 
 							<div class="input-group">
-								<textarea id="surat_keterangan" class="autosize-transition form-control" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 92px; width: 100%;" name="surat_keterangan"></textarea>
+								<textarea id="surat_keterangan" class="autosize-transition form-control" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 92px; width: 100%;" name="reimburse_note"></textarea>
 							</div>
 						</div>
 					</div>
@@ -93,7 +93,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 							<a class="btn btn-success add_button">
 								<i class="ace-icon fa fa-plus bigger-110"></i>
-								Tambahkan Surat
+								Tambahkan Bukti*
 							</a>
 						</div>
 					</div>
@@ -819,7 +819,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				var fieldVal = $(this).val();
 				if (!fieldVal) valid = false;
 			});
-			if ((option == 2) && (fileWrap.length <= 0)) {
+			if ((fileWrap.length <= 0)) {
 				Toast.fire({
 					icon: 'warning',
 					title: "<?= $this->lang->line('document_warning_no_file') ?>"
@@ -861,7 +861,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									title: '<?= $this->lang->line('text_success') ?>',
 									text: response.message,
 								}).then(function() {
-									window.location = "<?= base_url('letter') ?>";
+									window.location = "<?= base_url('reimburse') ?>";
 								});
 							} else {
 								$.gritter.add({
